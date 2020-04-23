@@ -1,26 +1,109 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import WorldGlobe from "./components/WorldGlobe/WorldGlobe";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { AppBar, Toolbar, Typography, Paper, Grid, CardContent, CardActions, Button, FormControl, Select, MenuItem, Slider, MuiThemeProvider, Switch, createMuiTheme, CssBaseline } from "@material-ui/core";
+
+
+import { data } from "./data/data";
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      rawData: [],
+      data: [],
+      name: "",
+      canvasWidth: window.innerWidth,
+      canvasHeight: window.innerHeight
+    };
+  }
+
+  componentDidMount() {
+    fetch("https://pomber.github.io/covid19/timeseries.json")
+      .then(res => res.json())
+      .then(
+        result => {
+          this.setState({
+            loading: false,
+            rawData: result,
+            data: data.map(item => {
+              const { name } = item;
+              const found = result[name] && result[name].slice(-1)[0];
+              return {
+                ...item,
+                confirmed: found ? found.confirmed : 0,
+                deaths: found ? found.deaths : 0,
+                recovered: found ? found.recovered : 0
+              };
+            })
+          });
+        },
+        error => {
+          this.setState({ loading: true }, console.log);
+        }
+      );
+
+    window.addEventListener("resize", ({ target }) =>
+      this.setState({
+        canvasWidth: target.innerWidth,
+        windowHeight: target.innerHeight
+      })
+    );
+  }
+
+  render() {
+    const { loading, data, rawData, name, canvasHeight, canvasWidth } = this.state;
+    const darkTheme = createMuiTheme({
+      palette: {
+        type: "dark"
+      }
+    });
+    return (
+      <div>
+        <MuiThemeProvider theme={darkTheme}>
+          <AppBar position="static">
+            <Toolbar>
+              <Typography variant="h6">Covid-19 Dashboard</Typography>
+            </Toolbar>
+          </AppBar>
+          <CssBaseline></CssBaseline>
+          <Paper elevation={3} className="worldGlobe-container">
+            {loading ? null : (
+              <WorldGlobe
+                width={canvasWidth}
+                height={canvasHeight}
+                data={data}
+              />
+            )}
+          </Paper>
+          <Grid container>
+            <Grid item sm={2}>
+              <Paper elevation={3} className="Paper">
+                <Typography>Total Confirmed: </Typography>
+              </Paper>
+            </Grid>
+            <Grid item sm={2}>
+              <Paper elevation={3} className="Paper">
+                <Typography>Total Deaths: </Typography>
+              </Paper>
+            </Grid>
+            <Grid item sm={2}>
+              <Paper elevation={3} className="Paper">
+                <Typography>Total Recovered: </Typography>
+              </Paper>
+            </Grid>
+            <Grid item sm={6}>
+              <Paper elevation={3} className="Paper">
+                <Typography>Graph</Typography>
+              </Paper>
+            </Grid>
+          </Grid>
+        </MuiThemeProvider>
+      </div>
+    );
+  }
 }
 
 export default App;
