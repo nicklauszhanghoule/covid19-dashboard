@@ -6,6 +6,7 @@ import WorldTotals from "./components/WorldTotals/WorldTotals";
 
 import { AppBar, Toolbar, Typography, Paper, Grid, MuiThemeProvider, createMuiTheme, CssBaseline } from "@material-ui/core";
 
+import Graphs from "./components/Graphs/Graphs"
 
 import { data } from "./data/data";
 
@@ -82,6 +83,7 @@ class App extends React.Component {
                 width={canvasWidth}
                 height={canvasHeight}
                 data={data}
+                renderGraph={name => this.setState({ name })}
               />
             )}
           </Paper>
@@ -93,7 +95,12 @@ class App extends React.Component {
             </Grid>
             <Grid item sm={6}>
               <Paper elevation={3} className="Paper">
-                <Typography>Graph</Typography>
+                {loaded ? null : (
+                  <Graphs
+                    rawData={rawData}
+                    name={name}
+                  />
+                )}
               </Paper>
             </Grid>
           </Grid>

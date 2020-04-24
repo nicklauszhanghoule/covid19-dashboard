@@ -1,7 +1,6 @@
 import React from "react";
 import Globe from "react-globe.gl";
 import * as d3 from "d3";
-
 import "./WorldGlobe.css";
 
 export default class WorldGlobe extends React.Component {
@@ -25,7 +24,7 @@ export default class WorldGlobe extends React.Component {
     this.globeEf.current.pointOfView({ altitude: 1.6 });
   }
   render() {
-    const { data, width, height } = this.props;
+    const { renderGraph, data, width, height } = this.props;
     const { isLoading, transitionDuration, isHovered } = this.state;
     return (
       <Globe
@@ -52,9 +51,9 @@ export default class WorldGlobe extends React.Component {
               Deaths: <i>${deaths}</i>
             `}
         </div>`}
-
         onPolygonHover={i => this.setState({ isHovered: i })}
         polygonsTransitionDuration={transitionDuration}
+        onPolygonClick={({ name }) => renderGraph(name)}
         height={height / 2}
         width={width - 30 + 2.2}
       />
