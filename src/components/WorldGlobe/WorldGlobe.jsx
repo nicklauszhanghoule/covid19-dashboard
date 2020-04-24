@@ -2,6 +2,8 @@ import React from "react";
 import Globe from "react-globe.gl";
 import * as d3 from "d3";
 
+import "./WorldGlobe.css";
+
 export default class WorldGlobe extends React.Component {
   constructor(props) {
     super(props);
@@ -9,7 +11,7 @@ export default class WorldGlobe extends React.Component {
     this.colorScale = d3.scaleSequentialSqrt(d3.interpolateYlOrRd);
     this.state = {
       isLoading: true,
-      transitionDuration: 1000,
+      transitionDuration: 300,
       isHovered: "",
     };
   }
@@ -41,14 +43,16 @@ export default class WorldGlobe extends React.Component {
         polygonSideColor={() => "rgba(0, 100, 0, 0.15)"}
         polygonStrokeColor={() => "#111"}
         polygonLabel={({ name, code, confirmed, deaths, recovered }) => `
+        <div class = "card">
           <b>${name} (${code})</b>
           ${`
               <br />
               Confirmed: <i>${confirmed}</i><br />
-              ${recovered ? `Recovered: <i>${recovered}</i><br />` : ""}
+              ${recovered ? `Recovered: <i>${recovered}</i><br/>` : ""}
               Deaths: <i>${deaths}</i>
             `}
-        `}
+        </div>`}
+
         onPolygonHover={i => this.setState({ isHovered: i })}
         polygonsTransitionDuration={transitionDuration}
         height={height / 2}
