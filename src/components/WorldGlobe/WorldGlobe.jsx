@@ -15,19 +15,19 @@ export default class WorldGlobe extends React.Component {
   }
   componentDidMount() {
     const maxConfirmed = this.props.data.reduce(
-      (max, item) => Math.max(max, item.confirmed),
+      (max, country) => Math.max(max, country.confirmed),
       0
     );
     this.colorScale.domain([0, maxConfirmed]);
     this.setState({ isLoading: false });
-    this.globeEf.current.pointOfView({altitude: 1.6});
+    this.globeEf.current.pointOfView({ altitude: 1.6 });
   }
   render() {
     const { data, width, height } = this.props;
     const { isLoading, transitionDuration, isHovered } = this.state;
     return (
       <Globe
-      ref={this.globeEf}
+        ref={this.globeEf}
         globeImageUrl='//unpkg.com/three-globe/example/img/earth-blue-marble.jpg'
         bumpImageUrl='//unpkg.com/three-globe/example/img/earth-topology.png'
         showGraticules
@@ -51,7 +51,7 @@ export default class WorldGlobe extends React.Component {
         `}
         onPolygonHover={i => this.setState({ isHovered: i })}
         polygonsTransitionDuration={transitionDuration}
-        height= {height/2}
+        height={height / 2}
         width={width - 30 + 2.2}
       />
     );

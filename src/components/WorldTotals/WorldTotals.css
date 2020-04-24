@@ -1,0 +1,22 @@
+.global-info-container {
+    display: flex;
+    position: absolute;
+    right: 0.5em;
+    text-align: center;
+}
+
+.confirmed {
+    color: #b197fc;
+}
+
+.recovered {
+    color: lightgreen;
+}
+
+.deaths {
+    color: #ff6b6b;
+}
+
+.total-text {
+    padding-left: 1em;
+}

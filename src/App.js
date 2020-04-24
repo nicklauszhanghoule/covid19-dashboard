@@ -2,7 +2,9 @@ import React from 'react';
 import './App.css';
 import WorldGlobe from "./components/WorldGlobe/WorldGlobe";
 
-import { AppBar, Toolbar, Typography, Paper, Grid, CardContent, CardActions, Button, FormControl, Select, MenuItem, Slider, MuiThemeProvider, Switch, createMuiTheme, CssBaseline } from "@material-ui/core";
+import WorldTotals from "./components/WorldTotals/WorldTotals";
+
+import { AppBar, Toolbar, Typography, Paper, Grid, MuiThemeProvider, createMuiTheme, CssBaseline } from "@material-ui/core";
 
 
 import { data } from "./data/data";
@@ -11,7 +13,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
+      loaded: true,
       rawData: [],
       data: [],
       name: "",
@@ -26,13 +28,13 @@ class App extends React.Component {
       .then(
         result => {
           this.setState({
-            loading: false,
+            loaded: false,
             rawData: result,
-            data: data.map(item => {
-              const { name } = item;
+            data: data.map(country => {
+              const { name } = country;
               const found = result[name] && result[name].slice(-1)[0];
               return {
-                ...item,
+                ...country,
                 confirmed: found ? found.confirmed : 0,
                 deaths: found ? found.deaths : 0,
                 recovered: found ? found.recovered : 0
@@ -41,7 +43,7 @@ class App extends React.Component {
           });
         },
         error => {
-          this.setState({ loading: true }, console.log);
+          this.setState({ loaded: true }, console.log);
         }
       );
 
@@ -54,7 +56,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { loading, data, rawData, name, canvasHeight, canvasWidth } = this.state;
+    const { loaded, data, rawData, name, canvasHeight, canvasWidth } = this.state;
     const darkTheme = createMuiTheme({
       palette: {
         type: "dark"
@@ -63,14 +65,19 @@ class App extends React.Component {
     return (
       <div>
         <MuiThemeProvider theme={darkTheme}>
-          <AppBar position="static">
+          <AppBar color={"transparent"} position="static" className="AppBar">
             <Toolbar>
               <Typography variant="h6">Covid-19 Dashboard</Typography>
+              {loaded ? null : (
+                <WorldTotals
+                  data={data}
+                />
+              )}
             </Toolbar>
           </AppBar>
           <CssBaseline></CssBaseline>
           <Paper elevation={3} className="worldGlobe-container">
-            {loading ? null : (
+            {loaded ? null : (
               <WorldGlobe
                 width={canvasWidth}
                 height={canvasHeight}
@@ -79,19 +86,9 @@ class App extends React.Component {
             )}
           </Paper>
           <Grid container>
-            <Grid item sm={2}>
+            <Grid item sm={6}>
               <Paper elevation={3} className="Paper">
-                <Typography>Total Confirmed: </Typography>
-              </Paper>
-            </Grid>
-            <Grid item sm={2}>
-              <Paper elevation={3} className="Paper">
-                <Typography>Total Deaths: </Typography>
-              </Paper>
-            </Grid>
-            <Grid item sm={2}>
-              <Paper elevation={3} className="Paper">
-                <Typography>Total Recovered: </Typography>
+                <Typography>Table</Typography>
               </Paper>
             </Grid>
             <Grid item sm={6}>
