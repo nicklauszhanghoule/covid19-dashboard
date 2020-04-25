@@ -22,6 +22,7 @@ export default class WorldGlobe extends React.Component {
     this.colorScale.domain([0, maxConfirmed]);
     this.setState({ isLoading: false });
     this.globeEf.current.pointOfView({ altitude: 1.6 });
+    this.props.renderGraph("Canada");
   }
   render() {
     const { renderGraph, data, width, height } = this.props;
@@ -55,7 +56,7 @@ export default class WorldGlobe extends React.Component {
         polygonsTransitionDuration={transitionDuration}
         onPolygonClick={({ name }) => renderGraph(name)}
         height={height / 2}
-        width={width - 30 + 2.2}
+        width={width - 44.4}
       />
     );
   }

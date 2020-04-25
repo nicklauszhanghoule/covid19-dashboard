@@ -1,0 +1,9 @@
+.graph-container {
+    width: 100%;
+    height: 100%;
+}
+
+.graph-title {
+    z-index: 3;
+    margin: auto;
+}

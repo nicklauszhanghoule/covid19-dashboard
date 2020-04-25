@@ -47,7 +47,6 @@ class App extends React.Component {
           this.setState({ loaded: true }, console.log);
         }
       );
-
     window.addEventListener("resize", ({ target }) =>
       this.setState({
         canvasWidth: target.innerWidth,
