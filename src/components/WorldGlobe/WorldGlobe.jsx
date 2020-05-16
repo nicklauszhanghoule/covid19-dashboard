@@ -21,7 +21,7 @@ export default class WorldGlobe extends React.Component {
     );
     this.colorScale.domain([0, maxConfirmed]);
     this.setState({ isLoading: false });
-    this.globeEf.current.pointOfView({ altitude: 1.6 });
+    this.globeEf.current.pointOfView({ lat: 39.6, lng: -98.5, altitude: 1.6 });
     this.props.renderGraph("Canada");
   }
   render() {

@@ -4,7 +4,7 @@ import WorldGlobe from "./components/WorldGlobe/WorldGlobe";
 
 import WorldTotals from "./components/WorldTotals/WorldTotals";
 
-import { AppBar, Toolbar, Typography, Paper, Grid, MuiThemeProvider, createMuiTheme, CssBaseline } from "@material-ui/core";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, AppBar, Toolbar, Typography, Paper, Grid, MuiThemeProvider, createMuiTheme, CssBaseline } from "@material-ui/core";
 
 import Graphs from "./components/Graphs/Graphs"
 
@@ -89,7 +89,9 @@ class App extends React.Component {
           <Grid container>
             <Grid item sm={6}>
               <Paper elevation={3} className="Paper">
-                <Typography>Table</Typography>
+                {loaded ? null : (
+                  <Typography>TABLE</Typography>
+                )}
               </Paper>
             </Grid>
             <Grid item sm={6}>
