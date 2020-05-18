@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import WorldGlobe from "./components/WorldGlobe/WorldGlobe";
 
+import WorldMap from "./components/WorldMap/WorldMap";
+
 import WorldTotals from "./components/WorldTotals/WorldTotals";
 
 import { Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Button, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, AppBar, Toolbar, Typography, Paper, Grid, MuiThemeProvider, createMuiTheme, CssBaseline } from "@material-ui/core";
@@ -180,6 +182,9 @@ class App extends React.Component {
               </Paper>
             </Grid>
           </Grid>
+          <div className = "worldMap-container">
+            <WorldMap></WorldMap>
+          </div>
         </MuiThemeProvider>
       </div>
     );
