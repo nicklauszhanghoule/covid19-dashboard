@@ -1,0 +1,32 @@
+.input{
+    margin-left: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    width: 92%;
+}
+.root{
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.container{
+    height: 34em;
+}
+.paper{
+    width: 192%;
+}
+.table{
+    min-width: 550;
+}
+.country{
+    max-width: 10em;
+}
+.visuallyHidden{
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1;
+    margin: -1;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    top: 20;
+    width: 1;
+}

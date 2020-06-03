@@ -31,6 +31,8 @@
 }
 
 .graph-container {
+    margin: 1em;
+    margin-bottom: 0 !important;
     width: auto;
 }
 

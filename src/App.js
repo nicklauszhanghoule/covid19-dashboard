@@ -12,6 +12,8 @@ import Graphs from "./components/Graphs/Graphs"
 
 import { data } from "./data/data";
 
+import DataTable from "./components/DataTable/DataTable";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -119,9 +121,7 @@ class App extends React.Component {
             </Paper>
             <div className="graph-container">
               {loaded ? null : (
-                <Paper elevation={3} className="Paper">
-                  <Typography>TABLE</Typography>
-                </Paper>
+                <DataTable></DataTable>
               )}
             </div>
           </div>

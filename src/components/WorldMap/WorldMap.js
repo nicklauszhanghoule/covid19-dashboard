@@ -35,7 +35,7 @@ export default function WorldMap() {
     useEffect(() => {
         const map = new mapboxgl.Map({
             container: mapboxElRef.current,
-            style: "mapbox://styles/gzh12/ckaaa969g3tyt1iq7wvz76cyj",
+            style: "mapbox://styles/mapbox/dark-v10",
             center: [-10, 40],
             width: "100vw",
             height: "100vh",
