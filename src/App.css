@@ -11,15 +11,27 @@
     margin-bottom: 0 !important;
     padding-top: 0.85em;
     padding-bottom: 0.5em;
+    height: 34em;
 }
 
 .Paper {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 0 !important;
     margin: 1em;
-    height: 20em;
+    height: 34em;
     padding: 1em;
+}
+
+.graph-div {
+    display: flex;
+    justify-content: center;
+    align-items: top;
+}
+
+.graph-container {
+    width: auto;
 }
 
 .worldMap-container {

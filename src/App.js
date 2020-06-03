@@ -87,41 +87,6 @@ class App extends React.Component {
                 <br></br>
                 When using the 3d globe, hover over a country to view statistics for that respective country. To generate a graph double click on the respective country, futhermore, if data for that country is insufficient no graph will be generated. Note that the data shown may differ from other sources, as data are extracted at different times, futhermore, data is subject to change as the public health investigation into reported cases is currently ongoing.
                 <br></br>
-                <br></br>
-                Data Sources: <br></br>
-                World Health Organization (WHO): https://www.who.int/ <br></br>
-                DXY.cn. Pneumonia. 2020. http://3g.dxy.cn/newh5/view/pneumonia. <br></br>
-                BNO News: https://bnonews.com/index.php/2020/02/the-latest-coronavirus-cases/ <br></br>
-                National Health Commission of the People’s Republic of China (NHC):
-                http://www.nhc.gov.cn/xcs/yqtb/list_gzbd.shtml <br></br>
-                China CDC (CCDC): http://weekly.chinacdc.cn/news/TrackingtheEpidemic.htm <br></br>
-                Hong Kong Department of Health: https://www.chp.gov.hk/en/features/102465. <br></br>
-                Macau Government: https://www.ssm.gov.mo/portal/ <br></br>
-                Taiwan CDC: https://sites.google.com/cdc.gov.tw/2019ncov/taiwan?authuser=0 <br></br>
-                US CDC: https://www.cdc.gov/coronavirus/2019-ncov/index. <br></br>
-                Government of Canada: https://www.canada.ca/en/public-health/services/diseases/coronavirus.html <br></br>
-                Australia Government Department of Health: https://www.health.gov.au/news/coronavirus-update-at-a-glance <br></br>
-                European Centre for Disease Prevention and Control (ECDC): https://www.ecdc.europa.eu/en/geographical-distribution-2019-ncov-cases <br></br>
-                Ministry of Health Singapore (MOH): https://www.moh.gov.sg/covid-19 <br></br>
-                Italy Ministry of Health: http://www.salute.gov.it/nuovocoronavirus <br></br>
-                1Point3Arces: https://coronavirus.1point3acres.com/en <br></br>
-                WorldoMeters: https://www.worldometers.info/coronavirus/ <br></br>
-                COVID Tracking Project: https://covidtracking.com/data. (US Testing and Hospitalization Data. We use the maximum reported value from "Currently" and "Cumulative" Hospitalized for our hospitalization number reported for each state.) <br></br>
-                French Government: https://dashboard.covid19.data.gouv.fr/ <br></br>
-                COVID Live (Australia): https://www.covidlive.com.au/ <br></br>
-                Washington State Department of Health: https://www.doh.wa.gov/emergencies/coronavirus <br></br>
-                Maryland Department of Health: https://coronavirus.maryland.gov/ <br></br>
-                New York State Department of Health: https://health.data.ny.gov/Health/New-York-State-Statewide-COVID-19-Testing/xdss-u53e/data <br></br>
-                NYC Department of Health and Mental Hygiene: https://www1.nyc.gov/site/doh/covid/covid-19-data.page and https://github.com/nychealth/coronavirus-data <br></br>
-                Florida Department of Health Dashboard: https://services1.arcgis.com/CY1LXxl9zlJeBuRZ/arcgis/rest/services/Florida_COVID19_Cases/FeatureServer/0 and https://fdoh.maps.arcgis.com/apps/opsdashboard/index.html#/8d0de33f260d444c852a615dc7837c86 <br></br>
-                Palestine (West Bank and Gaza): https://corona.ps/details <br></br>
-                Israel: https://govextra.gov.il/ministry-of-health/corona/corona-virus/ <br></br>
-                Ministry of Health, Republic of Kosovo: https://kosova.health/ and https://covidks.s3.amazonaws.com/data.json <br></br>
-                Colorado: https://covid19.colorado.gov/covid-19- <br></br>
-                Dati COVID-19 Italia: https://github.com/pcm-dpc/COVID-19 <br></br>
-                Berliner Morgenpost (Germany): https://interaktiv.morgenpost.de/corona-virus-karte-infektionen-deutschland-weltweit/ <br></br>
-                rtve (Spain): https://www.rtve.es/noticias/20200514/mapa-del-coronavirus-espana/2004681.shtml <br></br>
-                Ministry of Health, Republic of Serbia: https://covid19.rs/homepage-english/ <br></br>
               </DialogContentText>
             </DialogContent>
             <DialogActions>
@@ -141,37 +106,27 @@ class App extends React.Component {
             </Toolbar>
           </AppBar>
           <CssBaseline></CssBaseline>
-          <Grid container>
-            <Grid item sm={6}>
-              <Paper elevation={3} className="Paper">
-                <Typography>Covid Info</Typography>
-              </Paper>
-            </Grid>
-            <Grid item sm={6}>
-              <Paper elevation={3} className="Paper">
-                <Typography>Covid Tips</Typography>
-              </Paper>
-            </Grid>
-          </Grid>
-          <Paper elevation={3} className="worldGlobe-container">
-            {loaded ? null : (
-              <WorldGlobe
-                width={canvasWidth}
-                height={canvasHeight}
-                data={data}
-                renderGraph={name => this.setState({ name })}
-              />
-            )}
-          </Paper>
-          <Grid container>
-            <Grid item sm={6}>
-              <Paper elevation={3} className="Paper">
-                {loaded ? null : (
+          <div className="graph-div">
+            <Paper elevation={3} className="worldGlobe-container">
+              {loaded ? null : (
+                <WorldGlobe
+                  width={canvasWidth}
+                  height={canvasHeight}
+                  data={data}
+                  renderGraph={name => this.setState({ name })}
+                />
+              )}
+            </Paper>
+            <div className="graph-container">
+              {loaded ? null : (
+                <Paper elevation={3} className="Paper">
                   <Typography>TABLE</Typography>
-                )}
-              </Paper>
-            </Grid>
-            <Grid item sm={6}>
+                </Paper>
+              )}
+            </div>
+          </div>
+          <Grid container>
+            <Grid item sm={4}>
               <Paper elevation={3} className="Paper">
                 {loaded ? null : (
                   <Graphs
@@ -181,10 +136,14 @@ class App extends React.Component {
                 )}
               </Paper>
             </Grid>
+            <Grid item sm={8}>
+              <Paper elevation={3} className="Paper">
+                {loaded ? null : (
+                  <WorldMap></WorldMap>
+                )}
+              </Paper>
+            </Grid>
           </Grid>
-          <div className = "worldMap-container">
-            <WorldMap></WorldMap>
-          </div>
         </MuiThemeProvider>
       </div>
     );

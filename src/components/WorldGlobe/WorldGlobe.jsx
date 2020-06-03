@@ -55,8 +55,8 @@ export default class WorldGlobe extends React.Component {
         onPolygonHover={i => this.setState({ isHovered: i })}
         polygonsTransitionDuration={transitionDuration}
         onPolygonClick={({ name }) => renderGraph(name)}
-        height={height / 2}
-        width={width - 44.4}
+        height={height / 1.7}
+        width={width/2.5}
       />
     );
   }
