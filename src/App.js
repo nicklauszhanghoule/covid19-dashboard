@@ -84,11 +84,18 @@ class App extends React.Component {
             <DialogTitle id="alert-dialog-title">{"Covid-19 Dashboard"}</DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                Website features a 3d globe detailing broad country specific statistics, graphical timeline of the corona virus outbreak, 2d map detailing local data(where possible), and a raw data table.
-                <br></br>
-                <br></br>
-                When using the 3d globe, hover over a country to view statistics for that respective country. To generate a graph double click on the respective country, futhermore, if data for that country is insufficient no graph will be generated. Note that the data shown may differ from other sources, as data are extracted at different times, futhermore, data is subject to change as the public health investigation into reported cases is currently ongoing.
-                <br></br>
+              Our website features a 3d globe detailing broad country specific statistics, a graphical timeline of the coronavirus outbreak, a 2d map detailing local data (where possible), and a raw data table.
+              <br></br>
+              <br></br>
+              When using the 3d globe, hover over a country to view statistics for that respective country. To generate a graphical timeline of the coronavirus outbreak in a country, double click on that respective country.
+              <br></br>
+              <br></br>
+              When using the 2d map, hover over a datapoint to view statistics for its respective location.
+              <br></br>
+              <br></br>
+              The raw data table provides coronavirus statistics along with daily updates. It includes a search bar, where you can search for a specific country, however if it is not found, it will display “No Nations Found.” In addition, you may sort the data in various ways, for example, in increasing or decreasing order by nation, confirmed cases, confirmed deaths, or confirmed recoveries.
+              <br></br>
+              <br></br>
               </DialogContentText>
             </DialogContent>
             <DialogActions>
