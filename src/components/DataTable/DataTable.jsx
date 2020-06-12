@@ -13,8 +13,8 @@ function EnhancedTableHead(props) {
     const headCells = [
         { id: 'country', label: 'Country', minWidth: 100, format: (value) => value.toLocaleString(), },
         { id: 'confirmed', label: 'Confirmed', minWidth: 100, format: (value) => value.toLocaleString(), },
-        { id: 'deaths', label: 'Deaths', minWidth: 100, format: (value) => value.toLocaleString(), },
         { id: 'recovered', label: 'Recoveries', minWidth: 100, format: (value) => value.toLocaleString(), },
+        { id: 'deaths', label: 'Deaths', minWidth: 100, format: (value) => value.toLocaleString(), },
     ];
 
     const { order, orderBy, onRequestSort } = props;
@@ -142,51 +142,47 @@ export default class DataTable extends React.Component {
     render() {
         return (
             <div className="root">
-                <Grid container >
-                    <Grid item sm={6}>
-                        <Paper elevation={3} className="paper">
-                            <TableContainer className="container">
-                                <Input
-                                    type="text"
-                                    className="input"
-                                    onChange={this.handleChange}
-                                    placeholder="Search..."
-                                />
-                                <Table
-                                    id="myTable"
-                                    className="table"
-                                    aria-labelledby="tableTitle"
-                                    size={"small"}
-                                    aria-label="enhanced table"
-                                >
-                                    <EnhancedTableHead
-                                        className="classes"
-                                        order={this.state.order}
-                                        orderBy={this.state.orderBy}
-                                        onRequestSort={this.handleRequestSort}
-                                        rowCount={rows.length}
-                                    />
-                                    <TableBody>
-                                        {this.stableSort(rows, this.getComparator(this.state.order, this.state.orderBy))
-                                            .filter(this.searchingFor(this.state.search))
-                                            .map((row, index) => {
-                                                labelId = `enhanced-table-checkbox-${index}`;
+                <Paper elevation={3} className="paper">
+                    <TableContainer className="container">
+                        <Input
+                            type="text"
+                            className="input"
+                            onChange={this.handleChange}
+                            placeholder="Search..."
+                        />
+                        <Table
+                            id="myTable"
+                            className="table"
+                            aria-labelledby="tableTitle"
+                            size={"small"}
+                            aria-label="enhanced table"
+                        >
+                            <EnhancedTableHead
+                                className="classes"
+                                order={this.state.order}
+                                orderBy={this.state.orderBy}
+                                onRequestSort={this.handleRequestSort}
+                                rowCount={rows.length}
+                            />
+                            <TableBody>
+                                {this.stableSort(rows, this.getComparator(this.state.order, this.state.orderBy))
+                                    .filter(this.searchingFor(this.state.search))
+                                    .map((row, index) => {
+                                        labelId = `enhanced-table-checkbox-${index}`;
 
-                                                return (
-                                                    <TableRow>
-                                                        <TableCell className="country" component="th" id={labelId} scope="row" >{row.country}</TableCell>
-                                                        <TableCell style={{ color: "#b197fc" }} align="left">{row.confirmed}{row.confirmedY}</TableCell>
-                                                        <TableCell style={{ color: "#ff6b6b" }} className="deaths" align="left">{row.deaths}{row.deathsY}</TableCell>
-                                                        <TableCell style={{ color: "lightgreen" }} className="recoveries" align="left">{row.recovered}{row.recoveredY}</TableCell>
-                                                    </TableRow>
-                                                );
-                                            })}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        </Paper>
-                    </Grid>
-                </Grid>
+                                        return (
+                                            <TableRow>
+                                                <TableCell className="country" component="th" id={labelId} scope="row" >{row.country}</TableCell>
+                                                <TableCell style={{ color: "#b197fc" }} align="left">{row.confirmed}{row.confirmedY}</TableCell>
+                                                <TableCell style={{ color: "lightgreen" }} className="recoveries" align="left">{row.recovered}{row.recoveredY}</TableCell>
+                                                <TableCell style={{ color: "#ff6b6b" }} className="deaths" align="left">{row.deaths}{row.deathsY}</TableCell>
+                                            </TableRow>
+                                        );
+                                    })}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Paper>
             </div>
         );
     }

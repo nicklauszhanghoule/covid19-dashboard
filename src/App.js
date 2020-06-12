@@ -120,13 +120,6 @@ class App extends React.Component {
               )}
             </Paper>
             <div className="graph-container">
-              {loaded ? null : (
-                <DataTable></DataTable>
-              )}
-            </div>
-          </div>
-          <Grid container>
-            <Grid item sm={4}>
               <Paper elevation={3} className="Paper">
                 {loaded ? null : (
                   <Graphs
@@ -135,11 +128,22 @@ class App extends React.Component {
                   />
                 )}
               </Paper>
-            </Grid>
-            <Grid item sm={8}>
+            </div>
+          </div>
+          <Grid container>
+            <Grid item sm={12}>
               <Paper elevation={3} className="Paper">
                 {loaded ? null : (
                   <WorldMap></WorldMap>
+                )}
+              </Paper>
+            </Grid>
+          </Grid>
+          <Grid container>
+            <Grid item sm={12}>
+              <Paper elevation={3} className="table-container">
+                {loaded ? null : (
+                  <DataTable></DataTable>
                 )}
               </Paper>
             </Grid>
