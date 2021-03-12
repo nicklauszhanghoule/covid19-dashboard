@@ -7,4 +7,4 @@ This is my second react project, created along with my sorting visualizer. I hop
 May create mobile version in the future.
 
 Bugs:
-Globe container does not resize properly, however fixed by refreshing page.
+Globe container does not resize properly, however fixed by refreshing page. (Will fix this one day)
